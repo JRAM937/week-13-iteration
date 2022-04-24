@@ -42,6 +42,8 @@ Run the code in the chunk. What does it do?
 ```{r}
 #View(exams)
 exams %>% map(mean)
+
+#creates a list of students with their mean scores.
 ```
 
 ## map shorthand
@@ -54,7 +56,7 @@ Complete the code to apply the test below to every element of the list. Return t
 `length(<input> == 10)`
 
 ```{r}
-exams %>% ______(_________________)
+exams %>% map(~length(.)==10)
 ```
 
 ## Your Turn 3
@@ -64,7 +66,8 @@ Recompute the grades by dropping the lowest score and then taking the mean of th
 `(sum(<input>) - min(<input>)) / 9`
 
 ```{r}
-
+exams %>% 
+  map_dbl(~(sum(.) - min(.)) / 9)
 ```
 
 
@@ -76,7 +79,7 @@ Compute a final grade for each student, where the final grade is the average tes
 
 ```{r}
 exams %>% 
-  _________(____________, ~________________)
+  map2_dbl(extra_credit, ~mean(.x) + .y)
 ```
 
 
